@@ -1,18 +1,38 @@
 import requests
 import json
 import sys
+import os
+import platform
 
-term_green = f"\N{ESC}[33m"
-term_white = f"\N{ESC}[0m"
+# ansi color definitions
+ansi_yellow = "\u001b[33m"
+ansi_blue = "\u001b[34m"
+ansi_red = "\u001b[31m"
+ansi_white = "\u001b[0m"
 
+# Output color correction for windows during testing
+if platform.system() == "Windows":
+    test = os.system("color 0")
 
-# get and parse payloads
-payloads = sys.argv[0]
-payloads_type = sys.argv[1]
+print(f"Parsing Payload...", end="")
+
+# Get and parse payloads
+payloads = sys.argv[1]
+payloads_type = sys.argv[2]
 if payloads_type == "JSON":
-    payloads = json.loads(payloads)
+    try:
+        payloads = json.loads(payloads)
+    except:
+        raise Exception(f"failed to parse payloads, {payloads}")
+else:
+    sys.exit(f"{ansi_red}FATAL:{ansi_white}"
+             "Unsupported Payload type, terminating")
 
-print(f"{term_white} payload:{term_green}")
+print(f"{ansi_blue}Done{ansi_white}")
+
+
+print(f"Payloads Received:{ansi_blue} {payloads_type} {payloads})")
+
 
 
 # token='06856f710fe5506761846cdea53512c184703cac'

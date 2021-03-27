@@ -1,3 +1,16 @@
-  name:
-    description:
-  runs:
+name: 'PyEmblem'
+description: 'Creates multiple badge descriptions to be used with shields.io/endpoint payload controls'
+branding:
+  icon: 'tag'
+  color: 'green'
+inputs:
+  control_payload:
+    description: 'Your secret with the gist scope'
+    required: true
+  payload_type:
+    description: 'The type of payload you are sending'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    python3 main.py ${{inputs.control_payload}} ${{inputs.payload_type}}

@@ -13,4 +13,4 @@ inputs:
 runs:
   using: "composite"
   steps:
-    python3 main.py ${{inputs.control_payload}} ${{inputs.payload_type}}
+    python main.py ${{github.event.inputs.control_payload}} ${{github.event.inputs.payload_type}}

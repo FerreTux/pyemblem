@@ -1,4 +1,5 @@
 name: 'PyEmblem'
+runs-on: ubuntu-latest
 description: 'Creates multiple badge descriptions to be used with shields.io/endpoint payload controls'
 branding:
   icon: 'tag'

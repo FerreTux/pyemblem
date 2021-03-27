@@ -14,6 +14,8 @@ ansi_red = "\u001b[31m"
 ansi_white = "\u001b[0m"
 ansi_cyan = "\u001b[36m"
 
+#Debug control
+DEBUG = True
 
 # exit printer enum
 class Severity(Enum):
@@ -33,7 +35,7 @@ def print_err(severity: Severity, text: str) -> ...:
         color = ansi_blue
         ctx = "GENERAL"
     print(f"{color}\n{ctx}: {ansi_cyan}{text}"
-          f"{color}{tb.format_exc()}{ansi_white}")
+          f"{color}\n{tb.format_exc()}{ansi_white}")
 
 
 def print_exit(es: str = ""):
@@ -49,45 +51,45 @@ def parse_json(json_string: str) -> object:
     :return:
         parsed json object
     """
+    print(f"Parsing Payload...", end="")
+    print(payloads_type + "...", end=" ")
     try:
         payloads = json.loads(json_string)
-        return payloads
-    except RuntimeError as err:
-        error = True
-        pass
-    finally:
+    except ValueError as err:
         print_err(Severity.fatal, f"failed to parse payloads "
-                                  f"\n{json_string}\n")
+                                  f"\n{json_string}")
         print_exit(es="Bad JSON given, this commonly occurs with bad quotes\n"
                       "       or other characters requiring escape")
         pass
+    if DEBUG:
+        print(f"\nReceived:"
+              f"\n{ansi_blue} {payloads_type} {payloads}){ansi_blue}")
+    print(f"{ansi_blue}Done{ansi_white}")
+    return payloads
 
 
 
-def validate_payloads(pls: str):
+def validate_payloads(json_string: str) -> object:
     """
     Validates the json has all required attributes in the proper structure
 
     :param pls:
        Payloads objected i.e. the parsed object from first step
     :return:
+        json object
     """
-    if not pls:
-        raise RuntimeError("pls cannot be null")
+    payloads = parse_json(json_string)
 
-    print(f"Payloads Received:{ansi_blue} {payloads_type} {payloads}){ansi_blue} ")
+    if not json_string:
+        raise RuntimeError("json_string cannot be null")
 
     print("Validating Payloads data...", end="")
     try:
-        token = pls["token"]
-        file = pls["file"]
-        name = pls["token"]
-        description = pls["description"]
-    except RuntimeError:
-        pass
-    finally:
+        token = payloads["hello"]
+
+    except ValueError as err:
         print_err(Severity.fatal, f"Failed to validate payloads"
-                                  f"{pls}\n")
+                                  f"{pls}")
         print_exit(es="Required JSON attributes not added")
 
 
@@ -110,17 +112,21 @@ if platform.system() == "Windows":
     test = os.system("color 0")
 
 # Get and parse payloads
-payloads_type = sys.argv[2]
+try:
+    payloads_type = sys.argv[2]
+except IndexError:
+    print_err(Severity.fatal, "Argument 2 not found")
+    print_exit(es="\n1. Poorly escaped characters in terminal execution?"
+                  "\n2. Second argument not provided")
 
-print(f"Parsing Payload...", end="")
+
 if payloads_type == "JSON":
-    print(payloads_type + "...", end=" ")
-    parse_json(sys.argv[1])
+    validate_payloads(sys.argv[1])
 else:
     sys.exit(f"{ansi_red}FATAL:{ansi_yellow}"
              f"Unsupported Payload type ({payloads_type}), terminating")
 
-print(f"{ansi_blue}Done{ansi_white}")
+
 
 
 # token='06856f710fe5506761846cdea53512c184703cac'

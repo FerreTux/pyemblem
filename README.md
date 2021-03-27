@@ -16,8 +16,8 @@ Currently, only JSON is being leveraged but there are plans to expand to more pa
 | - | - |
 | Create multiple Gist posts from a single JSON payload ensuring required attributes are present |[![YourActionName Actions outputs](https://img.shields.io/badge/Status-Achieved-green)](https://github.com/ferretux/pyemblem)|
 | Validated Gists posts contain / must contain shield.io compatible json for use with /endpoint |[![YourActionName Actions Status](https://img.shields.io/badge/Status-In_Progress-yellow)](https://github.com/ferretux/pyemblem)|
-| Runs as a Github Composite workflow |[![YourActionName Actions Status](https://img.shields.io/badge/Status-In_Progress-yellow))](https://github.com/ferretux/pyemblem)|
-| Detailed training materials for using with your projects |[![YourActionName Actions Status](https://img.shields.io/badge/Status-In_Progress-yellow))](https://github.com/ferretux/pyemblem)|
+| Runs as a Github Composite workflow |[![YourActionName Actions Status](https://img.shields.io/badge/Status-In_Progress-yellow)](https://github.com/ferretux/pyemblem)|
+| Detailed training materials for using with your projects |[![YourActionName Actions Status](https://img.shields.io/badge/Status-In_Progress-yellow)](https://github.com/ferretux/pyemblem)|
 
 
 ### Non-Goals

@@ -13,4 +13,10 @@ inputs:
 runs:
   using: "composite"
   steps:
-    python main.py ${{github.event.inputs.control_payload}} ${{github.event.inputs.payload_type}}
+  - uses: actions/checkout@v2
+    env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  - uses: actions/setup-python@v2
+        with:
+            python-version: 3.8
+    python main.py ${{ github.event.inputs.control_payload }} ${{ github.event.inputs.payload_type }}

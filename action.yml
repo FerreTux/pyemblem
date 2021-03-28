@@ -14,6 +14,5 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: |
-        python main.py ${{ github.event.inputs.control_payload }} ${{ github.event.inputs.payload_type }}
-    shell: bash
+    - run: python main.py ${{ github.event.inputs.control_payload }} ${{ github.event.inputs.payload_type }}
+      shell: bash

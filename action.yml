@@ -14,9 +14,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-   - uses: actions/setup-python@v2
-     with:
-       python-version: 3.8
-   - id: pyemblem
-     run: |
-       python main.py ${{ github.event.inputs.control_payload }} ${{ github.event.inputs.payload_type }}
+    - run: |
+        python main.py ${{ github.event.inputs.control_payload }} ${{ github.event.inputs.payload_type }}
+    shell: bash

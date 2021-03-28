@@ -16,6 +16,7 @@ ansi_cyan = "\u001b[36m"
 
 # Debug control
 DEBUG = True
+sys.stderr.write("Test")
 
 
 class Severity(Enum):

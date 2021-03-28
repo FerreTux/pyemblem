@@ -14,11 +14,12 @@ inputs:
 outputs:
   status:
     description: 'Error codes and runtime details'
-    value:  ${{ steps.PyEmblem.outputs.codes }}
+    value:  ${{ steps.runs.outputs.codes }}
 runs:
   using: "composite"
   steps:
     - run: python main.py ${{ github.event.inputs.control_payload }} ${{ github.event.inputs.payload_type }}
       shell: bash
-    - run: echo "::set-output name=codes::$(echo $outs)"
+    - id: runs
+      run: echo "::set-output name=codes::$(echo $outs)"
       shell: bash

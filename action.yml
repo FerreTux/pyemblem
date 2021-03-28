@@ -11,10 +11,14 @@ inputs:
   payload_type:
     description: 'The type of payload you are sending'
     required: true
+outputs:
+  status:
+    description: 'Error codes and runtime details'
+    value:  ${{ steps.PyEmblem.outputs.codes }}
 runs:
   using: "composite"
   steps:
     - run: python main.py ${{ github.event.inputs.control_payload }} ${{ github.event.inputs.payload_type }}
       shell: bash
-    - run: echo $outs
+    - run: echo "::set-output name=codes::$(echo $outs)"
       shell: bash

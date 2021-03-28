@@ -16,7 +16,6 @@ ansi_cyan = "\u001b[36m"
 
 # Debug control
 DEBUG = True
-sys.stderr.write("Test")
 
 
 class Severity(Enum):
@@ -205,5 +204,5 @@ try:
         sys.exit(f"{ansi_red}FATAL:{ansi_yellow}"
                  f"Unsupported Payload type ({payloads_type}), terminating")
 finally:
-    print("email?")
+    return "email?"
 # https://script.google.com/home/projects/1Lj1AVb5E9__ArUuvzQOrg3iNQtqufYT97MkCEo0MDzXRf7r7ZLPrfb-c/edit

@@ -184,7 +184,6 @@ def send_payloads(control_dict: dict) -> ...:
         print_err(Severity.fatal, "Its Foobar")
         print_exit(es="Yup .... still foobar")
 
-
 # Output color correction for windows during testing
 if platform.system() == "Windows":
     test = os.system("color 0")
@@ -196,6 +195,7 @@ except IndexError:
     print_err(Severity.fatal, "Argument 2 not found")
     print_exit(es="\n1. Poorly escaped characters in terminal execution?"
                   "\n2. Second argument not provided")
+
 try:
     if payloads_type == "JSON":
         data = validate_payloads(sys.argv[1])
@@ -204,5 +204,6 @@ try:
         sys.exit(f"{ansi_red}FATAL:{ansi_yellow}"
                  f"Unsupported Payload type ({payloads_type}), terminating")
 finally:
-    os.system("outs='email?'")
+    os.system("outs=email")
 # https://script.google.com/home/projects/1Lj1AVb5E9__ArUuvzQOrg3iNQtqufYT97MkCEo0MDzXRf7r7ZLPrfb-c/edit
+

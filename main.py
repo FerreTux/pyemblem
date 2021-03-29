@@ -1,17 +1,15 @@
 # stdlib
 import json
 import os
-from io import TextIOWrapper
 import platform
 import re
 import sys
 import traceback as tb
 from enum import Enum
-
+from io import TextIOWrapper
 
 # 3p
 import requests
-
 
 # ansi color definitions
 ansi_yellow = "\u001b[33m"
@@ -26,7 +24,7 @@ DEBUG = False
 
 class Severity(Enum):
     """
-    Enum class to define console severitys for print functions
+    Enum class to define console severities for print functions
     """
 
     fatal = 1
@@ -45,7 +43,7 @@ def print_err(severity: Severity, text: str) -> ...:
     """
     Print Exceptions the way I like them with Context and pretty
     :param severity: Enum from class definition above
-    :param text: Additional conext you want printed
+    :param text: Additional context you want printed
     :return:
     """
     if severity == Severity.fatal:
@@ -83,20 +81,20 @@ def parse_json(file: TextIOWrapper) -> dict:
     try:
         payloads = json.load(file)
     except FileNotFoundError:
-        print_err(Severity.fatal, f"File Not found "
+        print_err(Severity.fatal, "File Not found "
                                   f"\n{file}")
         print_exit(es="1. Bad filename\n"
                       "2. Directory issues")
         pass
     except ValueError:
-        print_err(Severity.fatal, f"failed to parse payloads "
+        print_err(Severity.fatal, "failed to parse payloads "
                                   f"\n{file}")
         print_exit(es="Bad JSON given, this commonly occurs with bad quotes\n"
                       "       or other characters requiring escape")
         pass
 
     if DEBUG:
-        print(f"\nReceived:"
+        print("\nReceived:"
               f"\n{ansi_blue} {json.dumps(payloads)} {ansi_blue}")
     print_done()
     return payloads
@@ -126,7 +124,7 @@ def validate_payloads(json_file: str) -> dict:
                 = json.dumps(badge_dict[payload]["content"])
         # add the rest of the needs for checking the keys
     except KeyError:
-        print_err(Severity.fatal, f"Failed to validate payloads see TB")
+        print_err(Severity.fatal, "Failed to validate payloads see TB")
         print_exit(es="Required control attributes not present in json")
 
     print_done()
@@ -141,7 +139,7 @@ def validate_payload(pl: dict):
         # Params
           pl = A single Payload objected within the payloads object
     """
-
+    foobar = ""
     if DEBUG:
         print(f"\nReviewing payload: {pl} {type(pl)} {repr(pl)}")
     if not pl:
@@ -153,10 +151,10 @@ def validate_payload(pl: dict):
         try:
             for field in valid_dict:
                 if valid_dict[field]["required"]:
-                    val = payload[field]
+                    foobar = payload[field]
         except ValueError:
             print_err(Severity.fatal,
-                      f"Failed to find 'required' from the valid dictionary")
+                      "Failed to find 'required' from the valid dictionary")
             print_exit(es="1. a required field was not supplied in the payload"
                           "2. This is a bug on PyEmblems End if it appears")
         # Ensure required fields follow format rules
@@ -172,13 +170,13 @@ def validate_payload(pl: dict):
                     if not regex.match(payload[field]):
                         raise ValueError(f"Invalid Schema for {field}")
         except ValueError:
-            print_err(Severity.fatal, f"Invalid Schema found"
+            print_err(Severity.fatal, "Invalid Schema found"
                                       f"{pl}")
             print_exit(es="The field data failed to adhere to regex rules")
         if DEBUG:
             print(f"payload: {payload}")
     except KeyError:
-        print_err(Severity.fatal, f"Failed to validate payload"
+        print_err(Severity.fatal, "Failed to validate payload"
                                   f"{pl}")
         print_exit(es="Required payload attributes not present in json")
     payload["schemaVersion"] = 1
@@ -187,7 +185,7 @@ def validate_payload(pl: dict):
 def send_payloads(payload: dict) -> ...:
     """
     Sends the payloads to gist
-    :param control_dict: The dictionary with all necessary data
+    :param payload: The dictionary with all necessary data
     :return:
     """
     try:
@@ -220,24 +218,19 @@ def send_payloads(payload: dict) -> ...:
                       "\n2. No Internet"
                       "\n3. Gremlins?"
                       "\n4. I a terrible program and failed to handle this")
+    except NotImplementedError:
+        print_err(Severity.fatal, "Its Foobar")
+        print_exit(es="Yup .... still foobar")
     except RuntimeError:
         print_err(Severity.fatal, f"Remote rejected request {r.status_code}")
         print_exit(es="\n401: Please ensure you have a gist scope secret"
                       "\n401: Double check you copied the secret correctly"
                       "\n422: Malformed request semantically erroneous")
-    except NotImplementedError:
-        print_err(Severity.fatal, "Its Foobar")
-        print_exit(es="Yup .... still foobar")
 
-
-# Output color correction for windows during testing
-if platform.system() == "Windows":
-    foo = os.system("color 0")
-    WINDOWS = True
 
 def print_help():
-    print(f"""
-        main.py {inputs} {token} {gist_id} {commit_message:}
+    print("""
+        main.py {inputs} {token} {gist_id} {commit_message}
             inputs:
               payloads_file:
                 description: 'The file name to read'
@@ -254,6 +247,11 @@ def print_help():
 
             """)
 
+
+# Output color correction for windows during testing
+if platform.system() == "Windows":
+    foo = os.system("color 0")
+    WINDOWS = True
 
 if sys.argv[1] == "--h":
     print_help()
@@ -285,5 +283,3 @@ except RuntimeError:
 
 data = validate_payloads(payloads_file)
 send_payloads(data)
-
-

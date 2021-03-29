@@ -1,6 +1,6 @@
 # PyEmblem@Dev
 
-#### Checks:
+**Checks**
 ![status](https://github.com/FerreTux/PyEmblem/actions/workflows/create_badges.yml/badge.svg)
 ![status](https://github.com/FerreTux/PyEmblem/actions/workflows/linting.yml/badge.svg)
 
@@ -9,7 +9,7 @@
 Create dynamic badges using json file payloads.
 Currently, only JSON is being leveraged but there are plans to expand to more payload types in the future.
 
-### This is currently in testing for all Shields.io fields.
+### This is currently in testing for all Shields.io fields
 **Working**
 - label
 - message
@@ -34,9 +34,9 @@ Currently, only JSON is being leveraged but there are plans to expand to more pa
 ## How To
 ### Badge Json Structure
 1. **Create your Badge JSON file in your repo**
-   - This can be dynamically created from other processes or statically driven with a file in your repo
-   - The fields below each badge are all the fields supported by ![Badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/FerreTux/761627e5ad10843ebc983328034a8e3f/raw/ShieldsBadge)
-   - It should look something like ( PyEmblem will try to validate these and provide feedback if they do not match pattern )
+    - This can be dynamically created from other processes or statically driven with a file in your repo
+    - The fields below each badge are all the fields supported by ![Badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/FerreTux/761627e5ad10843ebc983328034a8e3f/raw/ShieldsBadge)
+    - It should look something like ( PyEmblem will try to validate these and provide feedback if they do not match pattern )
 ```json
   
 {
@@ -58,23 +58,23 @@ Currently, only JSON is being leveraged but there are plans to expand to more pa
 ```
 
 ### Getting your GistID
-**Create a new gist for the output** [![badbge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/FerreTux/761627e5ad10843ebc983328034a8e3f/raw/GistBadge)](https://gist.github.com/) 
-  - Recommend naming the new gist based on the project & just adding something generic to the content
-  - In the URL you should see something like
-     - ```https://gist.github.com/FerreTux/761627e5ad10843ebc983328034a8e3f#file-pyemblembadges```
-     - Your Gist Id is the long string in the middle: **761627e5ad10843ebc983328034a8e3f**
-     - Save this you will need this for later steps
+1. **Create a new gist for the output** [![badbge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/FerreTux/761627e5ad10843ebc983328034a8e3f/raw/GistBadge)](https://gist.github.com/)
+    - Recommend naming the new gist based on the project & just adding something generic to the content
+    - In the URL you should see something like
+        - ```https://gist.github.com/FerreTux/761627e5ad10843ebc983328034a8e3f#file-pyemblembadges```
+        - Your Gist Id is the long string in the middle: **761627e5ad10843ebc983328034a8e3f**
+        - Save this you will need this for later steps
   ![image](https://i.imgur.com/0mFh5Kf.png)
        
 ### Getting/Creating your Github Secret
 1. **Create a new secret**
-  - Profile Settings - > Developer Settings - > Personal Access Token
-  - Make sure to give this new secret gist scope
-  - Once created it will display a long alphanumeric.  Copy this you will need it in next step
+    - Profile Settings - > Developer Settings - > Personal Access Token
+    - Make sure to give this new secret gist scope
+    - Once created it will display a long alphanumeric.  Copy this you will need it in next step
 2. **Create a local repository secret variable**
-  - Repository - > Settings -> Secrets
-  - Name it something like ``` GIST_SECRET ```
-  - Paste your secret token into it,  That long Alphanumeric from last step
+    - Repository - > Settings -> Secrets
+    - Name it something like ``` GIST_SECRET ```
+    - Paste your secret token into it,  That long Alphanumeric from last step
 
 ### Setting up your workflow
 1. Create a new workflow in your repository and add the below with your gist id from previous steps and your secret name
@@ -120,20 +120,20 @@ jobs:
 
 - Recommend adding this to your readme somewhere as well
 ```md
-Badge Creation: ![](https://github.com/FerreTux/PyEmblem/actions/workflows/your_workflow.yaml/badge.svg)
+Badge Creation: ![Badge](https://github.com/FerreTux/PyEmblem/actions/workflows/your_workflow.yaml/badge.svg)
 ```
 
 
 ## MVP Details
 
-###  Goals
+### Goals
 
 | Goal | Status |
 | - | - |
-| Create multiple Gist posts from a single JSON payload ensuring required attributes are present | ![](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/FerreTux/761627e5ad10843ebc983328034a8e3f/raw/GoalBadge1) |
-| Validated Gists posts contain / must contain shield.io compatible json for use with /endpoint | ![](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/FerreTux/761627e5ad10843ebc983328034a8e3f/raw/GoalBadge2) |
-| Runs as a Github Composite workflow | ![](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/FerreTux/761627e5ad10843ebc983328034a8e3f/raw/GoalBadge3) |
-| Detailed training materials for using with your projects | ![](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/FerreTux/761627e5ad10843ebc983328034a8e3f/raw/GoalBadge4) |
+| Create multiple Gist posts from a single JSON payload ensuring required attributes are present | ![Badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/FerreTux/761627e5ad10843ebc983328034a8e3f/raw/GoalBadge1) |
+| Validated Gists posts contain / must contain shield.io compatible json for use with /endpoint | ![Badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/FerreTux/761627e5ad10843ebc983328034a8e3f/raw/GoalBadge2) |
+| Runs as a Github Composite workflow | ![Badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/FerreTux/761627e5ad10843ebc983328034a8e3f/raw/GoalBadge3) |
+| Detailed training materials for using with your projects | ![Badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/FerreTux/761627e5ad10843ebc983328034a8e3f/raw/GoalBadge4) |
 
 ### Non-Goals
 - Support for more than just shield.io
@@ -148,8 +148,7 @@ Badge Creation: ![](https://github.com/FerreTux/PyEmblem/actions/workflows/your_
 - **Main**
   - Validating payload structure
   - Posting to Gist
-  
-    
+
 ## Future Goals/ideas
 - Support more stringable file types
   - xml

@@ -251,7 +251,7 @@ except IndexError:
     print_exit(es="\n1. Poorly escaped characters in terminal execution?")
 
 try:
-    lint_file_path = "valid_keys.json"
+    lint_file_path = "FerreTux/pyemblem@Dev/valid_keys.json"
     if DEBUG:
         print(lint_file_path)
     with open(lint_file_path) as valid_keys_file:

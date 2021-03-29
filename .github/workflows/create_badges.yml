@@ -23,4 +23,4 @@ jobs:
       commit_message: "First Commit Attempt"
   - id: echo_json
     run: |
-      echo "Badges Created... We Hope? otherwise something is a foot at the circle k"
+      echo "Badges Created... We Hope? otherwise something is a foot at the Circle K"

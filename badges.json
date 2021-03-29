@@ -36,7 +36,8 @@
       "label": "",
       "message": "Link to Gist",
       "color": "blue",
-      "logoColor": "181717",
+      "labelColor": "181717",
+      "logoColor": "blueviolet",
       "namedLogo": "GitHub",
       "style": "for-the-badge"
     }
@@ -45,8 +46,8 @@
     "content": {
       "label": "",
       "message": "Shields Endpoint",
-      "color": "blue",
-      "logoColor": "000000",
+      "labelColor": "000000",
+      "logoColor": "ffffff",
       "namedLogo": "Shields.io",
       "style": "for-the-badge"
     }

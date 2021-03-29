@@ -3,28 +3,32 @@
     "content": {
       "label": "Status",
       "message": "Achieved",
-      "color": "green"
+      "color": "green",
+      "style": "for-the-badge"
     }
   },
   "GoalBadge2": {
     "content": {
       "label": "Status",
       "message": "Untested",
-      "color": "green"
+      "color": "yellow",
+      "style": "for-the-badge"
     }
   },
   "GoalBadge3": {
     "content": {
       "label": "Status",
       "message": "Achieved",
-      "color": "green"
+      "color": "green",
+      "style": "for-the-badge"
     }
   },
   "GoalBadge4": {
     "content": {
       "label": "Status",
       "message": "Achieved",
-      "color": "green"
+      "color": "green",
+      "style": "for-the-badge"
     }
   },
   "GistBadge": {
@@ -32,7 +36,8 @@
       "label": "",
       "message": "Link to Gist",
       "color": "yellow",
-      "namedLogo": "GitHub"
+      "namedLogo": "GitHub",
+      "style": "for-the-badge"
     }
   }
 }

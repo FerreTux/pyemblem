@@ -1,16 +1,15 @@
-#stdlib
-from io import TextIOWrapper
+# stdlib
 import json
+from io import TextIOWrapper
 import os
-import sys
-
 import platform
-import traceback as tb
+import sys
 import re
+import traceback as tb
 from enum import Enum
 
 
-#3p
+# 3p
 import requests
 
 

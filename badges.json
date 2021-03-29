@@ -43,7 +43,7 @@
   "ShieldsBadge": {
     "content": {
       "label": "",
-      "message": "Link to Shields Endpoint",
+      "message": "Shields Endpoint",
       "color": "000000",
       "namedLogo": "Shields.io",
       "style": "for-the-badge"

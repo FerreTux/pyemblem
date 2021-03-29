@@ -229,22 +229,28 @@ if platform.system() == "Windows":
     foo = os.system("color 0")
     WINDOWS = True
 
-"""
-inputs:
-  payloads_file:
-    description: 'The file name to read'
-    required: true
-  token:
-    description: 'Your github token with gist scope'
-    required: true
-  gist_id:
-    description: 'Your github token with gist scope'
-    required: true
-  commit_message:
-    description: 'Your github token with gist scope'
-    required: true
+def print_help():
+    print(f"""
+        main.py {inputs} {token} {gist_id} {commit_message:}
+            inputs:
+              payloads_file:
+                description: 'The file name to read'
+                required: true
+              token:
+                description: 'Your github token with gist scope'
+                required: true
+              gist_id:
+                description: 'Your github token with gist scope'
+                required: true
+              commit_message:
+                description: 'Your github token with gist scope'
+                required: true
 
-"""
+            """)
+
+
+if sys.argv[1] == "--h":
+    print_help()
 
 
 # Get and parse payloads
@@ -256,7 +262,9 @@ try:
     action_path = sys.argv[5]
 except IndexError:
     print_err(Severity.fatal, "Argument/s not found")
+    print_help()
     print_exit(es="\n1. Poorly escaped characters in terminal execution?")
+
 
 try:
     schema_file_path = "/home/runner/work/_actions/FerreTux/pyemblem/Dev/valid_keys.json"

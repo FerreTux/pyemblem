@@ -184,6 +184,8 @@ def send_payloads(control_dict: dict) -> ...:
         print_err(Severity.fatal, "Its Foobar")
         print_exit(es="Yup .... still foobar")
 
+
+print(sys.argv)
 # Output color correction for windows during testing
 if platform.system() == "Windows":
     test = os.system("color 0")

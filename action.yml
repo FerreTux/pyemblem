@@ -5,23 +5,23 @@ branding:
   icon: 'tag'
   color: 'green'
 inputs:
-  control_payload:
-    description: 'Your secret with the gist scope'
+  payloads_file:
+    description: 'The file name to read'
     required: true
-  payload_type:
-    description: 'The type of payload you are sending'
+  token:
+    description: 'Your github token with gist scope'
     required: true
-outputs:
-  status:
-    description: 'Error codes and runtime details'
-    value:  ${{ steps.runs.outputs.codes }}
+  gist_id:
+    description: 'Your github token with gist scope'
+    required: true
+  commit_message:
+    description: 'Your github token with gist scope'
+    required: true
 runs:
   using: "composite"
   steps:
     - id: runs
       run: |
         python -m pip install requests
-        echo ${{ inputs.control_payload }}[1]
-        echo ${{ inputs.control_payload }}
-        python ${{ github.action_path }}/main.py "${{ inputs.control_payload }}" ${{ inputs.payload_type }}
+        python ${{ github.action_path }}/main.py ${{ inputs.payloads_file }} ${{ inputs.token }} ${{ inputs.gist_id }} ${{ inputs.commit_message }}
       shell: bash

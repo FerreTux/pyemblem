@@ -1,3 +1,5 @@
+from io import TextIOWrapper
+
 import requests
 import json
 import sys
@@ -5,7 +7,7 @@ import os
 import platform
 import traceback as tb
 from enum import Enum
-
+import re
 
 # ansi color definitions
 ansi_yellow = "\u001b[33m"
@@ -64,62 +66,62 @@ def print_exit(es: str = ""):
              "@ https://github.com/FerreTux/pyemblem")
 
 
-def parse_json(json_string: str) -> dict:
+def parse_json(file: TextIOWrapper) -> dict:
     """
     Parse json parses the presumed json string or throws error
-    :param json_string:
-        a presumed string of json
+    :param file:
+        A file with the json
     :return:
         parsed json object
     """
     print(f"Parsing Payload...", end="")
-    print(payloads_type + "...", end=" ")
     try:
-        payloads = json.loads(json_string)
+        payloads = json.load(file)
+    except FileNotFoundError:
+        print_err(Severity.fatal, f"File Not found "
+                                  f"\n{file}")
+        print_exit(es="1. Bad filename\n"
+                      "2. Directory issues")
+        pass
     except ValueError:
         print_err(Severity.fatal, f"failed to parse payloads "
-                                  f"\n{json_string}")
+                                  f"\n{file}")
         print_exit(es="Bad JSON given, this commonly occurs with bad quotes\n"
                       "       or other characters requiring escape")
         pass
+
     if DEBUG:
         print(f"\nReceived:"
-              f"\n{ansi_blue} {payloads_type} {payloads}){ansi_blue}")
+              f"\n{ansi_blue} {json.dumps(payloads)} {ansi_blue}")
     print_done()
     return payloads
 
 
-def validate_payloads(json_string: str) -> dict:
+def validate_payloads(json_file: str) -> dict:
     """
     Validates the json has all required attributes in the proper structure
 
-    :param json_string:
-       Payloads objected i.e. the parsed object from first step
+    :param json_file:
+       The file containing your json
     :return:
         json object
     """
-    control_dict = parse_json(json_string)
-
-    if not json_string:
-        raise RuntimeError("json_string cannot be null")
+    control_dict = {}
+    with open(json_file) as file:
+        badge_dict = parse_json(file)
 
     print("Validating Payloads data...", end="")
     try:
-        gist_id = control_dict["gist_id"]
-        token = control_dict["token"]
-        payloads = control_dict["payloads"]["files"]
-        commit_message = control_dict["payloads"]["description"]
-        if DEBUG:
-            print(f"gist_id: {gist_id} token: {token}"
-                  f"\ncommit_message:{commit_message}"
-                  f"\npayloads:{payloads}\n")
+        control_dict["files"] = badge_dict
+        control_dict["description"] = commit_message
+        for payload in badge_dict:
+            validate_payload(badge_dict[payload])
+            badge_dict[payload]["content"] = f"""{badge_dict[payload]["content"]}"""
         # add the rest of the needs for checking the keys
     except KeyError:
-        print_err(Severity.fatal, f"Failed to validate payloads"
-                                  f"{json_string}")
+        print_err(Severity.fatal, f"Failed to validate payloads see TB")
         print_exit(es="Required control attributes not present in json")
-    for payload in payloads:
-        validate_payload(payloads[payload])
+
     print_done()
     return control_dict
 
@@ -132,21 +134,46 @@ def validate_payload(pl: dict):
         # Params
           pl = A single Payload objected within the payloads object
     """
+
     if DEBUG:
         print(f"\nReviewing payload: {pl} {type(pl)} {repr(pl)}")
     if not pl:
         raise RuntimeError()
     try:
         payload = pl["content"]
+
+        # Ensure required fields exist in the dictionary
+        try:
+            for field in valid_dict:
+                if valid_dict[field]["required"]:
+                    val = payload[field]
+        except ValueError:
+            print_err(Severity.fatal,
+                      f"Failed to find 'required' from the valid dictionary")
+            print_exit(es="1. a required field was not supplied in the payload"
+                          "2. This is a bug on PyEmblems End if it appears")
+        # Ensure required fields follow format rules
+        try:
+            for field in payload:
+                if valid_dict[field]["format_rule"]:
+                    regex = re.compile(valid_dict[field]["format_rule"])
+                    if not regex.match(payload[field]):
+                        raise ValueError(f"Invalid Schema for {field}")
+        except ValueError:
+            print_err(Severity.fatal, f"Invalid Schema found"
+                                      f"{pl}")
+            print_exit(es="The field data failed to adhere to regex rules")
         if DEBUG:
             print(f"payload: {payload}")
     except KeyError:
         print_err(Severity.fatal, f"Failed to validate payload"
                                   f"{pl}")
         print_exit(es="Required payload attributes not present in json")
+    payload["schemaVersion"] = 1
 
 
-def send_payloads(control_dict: dict) -> ...:
+
+def send_payloads(payload: dict) -> ...:
     """
     Sends the payloads to gist
     :param control_dict: The dictionary with all necessary data
@@ -154,22 +181,24 @@ def send_payloads(control_dict: dict) -> ...:
     """
     try:
         params = {"scope": "gist"}
-        payload = control_dict["payloads"]
         payload["public"] = True
-        headers = {'Authorization': f'token {control_dict["token"]}'}
+        if DEBUG:
+            print(f"The payload to gist is: \n {payload}")
+        headers = {'Authorization': f'token {token}'}
         r = requests.post('https://api.github.com/gists/'
-                          + control_dict["gist_id"], data=json.dumps(payload),
+                          + gist_id, data=json.dumps(payload),
                           headers=headers, params=params)
-
         if r.status_code == 200:
             pass
         elif r.status_code == 401:
             raise RuntimeError("invalid authentication credentials")
+        elif r.status_code == 422:
+            raise RuntimeError("Unprocessable Entity")
         elif r.status_code == 404:
             raise \
                 ValueError("Gist Not Found")
         else:
-            raise NotImplementedError("Unknown Error")
+            raise NotImplementedError(f"Unknown Error :{r.status_code}")
     except ValueError:
         print_err(Severity.fatal, "Requests failed see traceback")
         print_exit(es="\n1. Bad Gist ID"
@@ -177,9 +206,10 @@ def send_payloads(control_dict: dict) -> ...:
                       "\n3. Gremlins?"
                       "\n4. I a terrible program and failed to handle this")
     except RuntimeError:
-        print_err(Severity.fatal, "Remote rejected the request")
-        print_exit(es="\n1. Please check to ensure you have a gist scope secret"
-                      "\n2. Double check you have copied the secret correctly")
+        print_err(Severity.fatal, f"Remote rejected request {r.status_code}")
+        print_exit(es="\n401: Please ensure you have a gist scope secret"
+                      "\n401: Double check you have copied the secret correctly"
+                      "\n422: Malformed request semantically erroneous")
     except NotImplementedError:
         print_err(Severity.fatal, "Its Foobar")
         print_exit(es="Yup .... still foobar")
@@ -190,22 +220,43 @@ print(sys.argv)
 if platform.system() == "Windows":
     test = os.system("color 0")
 
+
+"""
+inputs:
+  payloads_file:
+    description: 'The file name to read'
+    required: true
+  token:
+    description: 'Your github token with gist scope'
+    required: true
+  gist_id:
+    description: 'Your github token with gist scope'
+    required: true
+  commit_message:
+    description: 'Your github token with gist scope'
+    required: true
+
+"""
+
+
 # Get and parse payloads
 try:
-    payloads_type = sys.argv[2]
+    payloads_file = sys.argv[1]
+    token = sys.argv[2]
+    gist_id = sys.argv[3]
+    commit_message = sys.argv[4]
 except IndexError:
-    print_err(Severity.fatal, "Argument 2 not found")
-    print_exit(es="\n1. Poorly escaped characters in terminal execution?"
-                  "\n2. Second argument not provided")
+    print_err(Severity.fatal, "Argument/s not found")
+    print_exit(es="\n1. Poorly escaped characters in terminal execution?")
 
 try:
-    if payloads_type == "JSON":
-        data = validate_payloads(sys.argv[1])
-        send_payloads(data)
-    else:
-        sys.exit(f"{ansi_red}FATAL:{ansi_yellow}"
-                 f"Unsupported Payload type ({payloads_type}), terminating")
-finally:
-    os.system("outs=email")
-# https://script.google.com/home/projects/1Lj1AVb5E9__ArUuvzQOrg3iNQtqufYT97MkCEo0MDzXRf7r7ZLPrfb-c/edit
+    with open("valid_keys.json") as valid_keys_file:
+        valid_dict = parse_json(valid_keys_file)
+except RuntimeError:
+    print_err(Severity.fatal, "Failed to load valid dictionary file")
+    print_exit(es="\nThis is a bug on PyEmblems end if it appears")
+
+data = validate_payloads(payloads_file)
+send_payloads(data)
+
 

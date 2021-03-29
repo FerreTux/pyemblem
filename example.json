@@ -1,0 +1,16 @@
+{
+  "<Badge_name>": {
+    "content": {
+      "label": "hello",
+      "message": "sweet world",
+      "color": "orange"
+    }
+  },
+  "<Badge_name>2": {
+    "content": {
+      "label": "hello",
+      "message": "sweet world",
+      "color": "orange"
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "label":{
+    "required":true,
+    "format_rule": null,
+    "description:": "The left message"
+  },
+  "message":{
+    "required":true,
+    "format_rule": null,
+    "description:": "The right message"
+  },
+  "color":{
+    "required":false,
+    "format_rule": "^(brightgreen|green|yellowgreen|yellow|orange|red|blue|lightgrey|success|important|critical|informational|inactive|blueviolet|([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))\\S*$",
+    "description:": "The right color. This can be overridden by the query string."
+  },
+  "labelColor": {
+    "required":false,
+    "format_rule": "^(brightgreen|green|yellowgreen|yellow|orange|red|blue|lightgrey|success|important|critical|informational|inactive|blueviolet|([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))\\S*$",
+     "description:": "The left color. This can be overridden by the query string."
+  },
+  "isError": {
+    "required":false,
+    "format_rule": "(true|false)",
+    "description:": "true to treat this as an error badge"
+  },
+  "namedLogo": {
+    "required":false,
+    "format_rule": "^[0-9]\\S*$",
+    "description:": "One of the named logos supported by Shields or simple-icons. Can be overridden by the query string."
+  },
+  "logoSvg": {
+    "required":false,
+    "format_rule": null,
+    "description:": "An SVG string containing a custom logo"
+  },
+  "logoColor": {
+    "required":false,
+    "format_rule": "^(brightgreen|green|yellowgreen|yellow|orange|red|blue|lightgrey|success|important|critical|informational|inactive|blueviolet|([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))\\S*$",
+    "description:": "Set the color of the logo (hex, rgb, rgba, hsl, hsla and css named colors supported). Supported for named logos but not for custom logos."
+  },
+  "logoWidth": {
+    "required":false,
+    "format_rule": "^[0-9]\\S*$",
+    "description:": "Set the horizontal space to give to the logo"
+  },
+  "logoPosition": {
+    "required":false,
+    "format_rule": "^[0-9]\\S*$",
+    "description:": "Same meaning as the query string. Can be overridden by the query string. Only works for named logos"
+  },
+  "style": {
+    "required":false,
+    "format_rule": "^(plastic|flat|for-the-badge|social)\\S*$",
+    "description:": "The different styles provided from shields.io"
+  },
+  "cacheSeconds": {
+    "required":false,
+    "format_rule": "^[0-9]\\S*$",
+    "description:": "Set the HTTP cache lifetime (rules are applied to infer a default value on a per-badge basis, any values specified below the default will be ignored). The legacy name \"maxAge\" is also supported."
+  }
+}

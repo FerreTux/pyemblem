@@ -21,7 +21,7 @@
   },
   "isError": {
     "required":false,
-    "format_rule": "(true|false)",
+    "format_rule": "bool",
     "description:": "true to treat this as an error badge"
   },
   "namedLogo": {

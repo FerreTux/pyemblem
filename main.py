@@ -156,7 +156,12 @@ def validate_payload(pl: dict):
         # Ensure required fields follow format rules
         try:
             for field in payload:
-                if valid_dict[field]["format_rule"]:
+                if valid_dict[field]["format_rule"] == "bool":
+                    if payload[field] is True or payload[field] is False:
+                        pass
+                    else:
+                        raise ValueError(f"Invalid Schema for {field}")
+                elif valid_dict[field]["format_rule"]:
                     regex = re.compile(valid_dict[field]["format_rule"])
                     if not regex.match(payload[field]):
                         raise ValueError(f"Invalid Schema for {field}")

@@ -23,5 +23,5 @@ runs:
     - id: runs
       run: |
         python -m pip install requests
-        python ${{ github.action_path }}/main.py ${{ inputs.payloads_file }} ${{ inputs.token }} ${{ inputs.gist_id }} ${{ inputs.commit_message }}
+        python ${{ github.action_path }}/main.py ${{ inputs.payloads_file }} ${{ inputs.token }} ${{ inputs.gist_id }} ${{ inputs.commit_message }} ${{ github.action_path }}
       shell: bash

@@ -245,13 +245,16 @@ try:
     token = sys.argv[2]
     gist_id = sys.argv[3]
     commit_message = sys.argv[4]
+    action_path = sys.argv[5]
 except IndexError:
     print_err(Severity.fatal, "Argument/s not found")
     print_exit(es="\n1. Poorly escaped characters in terminal execution?")
 
 try:
-    lint_file = os.path.join("valid_keys.json")
-    with open(lint_file) as valid_keys_file:
+    lint_file_path = action_path + "valid_keys.json"
+    if DEBUG:
+        print(lint_file_path)
+    with open(lint_file_path) as valid_keys_file:
         valid_dict = parse_json(valid_keys_file)
 except RuntimeError:
     print_err(Severity.fatal, "Failed to load valid dictionary file")

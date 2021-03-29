@@ -17,7 +17,7 @@ ansi_white = "\u001b[0m"
 ansi_cyan = "\u001b[36m"
 
 # Debug control
-DEBUG = True
+DEBUG = False
 
 
 class Severity(Enum):
@@ -172,7 +172,6 @@ def validate_payload(pl: dict):
     payload["schemaVersion"] = 1
 
 
-
 def send_payloads(payload: dict) -> ...:
     """
     Sends the payloads to gist
@@ -215,7 +214,6 @@ def send_payloads(payload: dict) -> ...:
         print_exit(es="Yup .... still foobar")
 
 
-print(sys.argv)
 # Output color correction for windows during testing
 if platform.system() == "Windows":
     foo = os.system("color 0")

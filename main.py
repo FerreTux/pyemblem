@@ -251,7 +251,7 @@ except IndexError:
     print_exit(es="\n1. Poorly escaped characters in terminal execution?")
 
 try:
-    schema_file_path = "FerreTux/pyemblem@Dev/valid_keys.json"
+    schema_file_path = "/home/runner/work/_actions/FerreTux/pyemblem/Dev/valid_keys.json"
     if DEBUG:
         print(schema_file_path)
     with open(schema_file_path) as valid_keys_file:

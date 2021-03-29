@@ -251,10 +251,10 @@ except IndexError:
     print_exit(es="\n1. Poorly escaped characters in terminal execution?")
 
 try:
-    lint_file_path = "FerreTux/pyemblem@Dev/valid_keys.json"
+    schema_file_path = "FerreTux/pyemblem@Dev/valid_keys.json"
     if DEBUG:
-        print(lint_file_path)
-    with open(lint_file_path) as valid_keys_file:
+        print(schema_file_path)
+    with open(schema_file_path) as valid_keys_file:
         valid_dict = parse_json(valid_keys_file)
 except RuntimeError:
     print_err(Severity.fatal, "Failed to load valid dictionary file")

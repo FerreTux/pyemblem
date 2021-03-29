@@ -107,7 +107,6 @@ def validate_payloads(json_file: str) -> dict:
         json object
     """
     control_dict = {}
-    regx_remove_quotes = re.compile("'")
     with open(json_file) as file:
         badge_dict = parse_json(file)
 
@@ -119,7 +118,6 @@ def validate_payloads(json_file: str) -> dict:
             validate_payload(badge_dict[payload])
             # Turn to string and pattern sub
             badge_dict[payload]["content"] = json.dumps(badge_dict[payload]["content"])
-            badge_dict[payload]["content"] = re.sub(badge_dict[payload]["content"], "\"")
         # add the rest of the needs for checking the keys
     except KeyError:
         print_err(Severity.fatal, f"Failed to validate payloads see TB")

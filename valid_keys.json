@@ -26,7 +26,7 @@
   },
   "namedLogo": {
     "required":false,
-    "format_rule": "^[0-9]\\S*$",
+    "format_rule": null,
     "description:": "One of the named logos supported by Shields or simple-icons. Can be overridden by the query string."
   },
   "logoSvg": {

@@ -1,6 +1,6 @@
 # Reads a json file of statuses for badges
 
-name: get_goal_status
+name: create_badges
 
 # Controls when the action will run.
 on:

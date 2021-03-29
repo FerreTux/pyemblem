@@ -65,7 +65,7 @@ Currently, only JSON is being leveraged but there are plans to expand to more pa
         - ```https://gist.github.com/FerreTux/761627e5ad10843ebc983328034a8e3f#file-pyemblembadges```
         - Your Gist Id is the long string in the middle: **761627e5ad10843ebc983328034a8e3f**
         - Save this you will need this for later steps ![image](https://i.imgur.com/0mFh5Kf.png)
-       
+
 ### Getting/Creating your Github Secret
 1. **Create a new secret**
     - Profile Settings - > Developer Settings - > Personal Access Token

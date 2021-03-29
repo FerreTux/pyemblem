@@ -1,5 +1,5 @@
 # PyEmblem 
-![](https://github.com/FerreTux/PyEmblem/actions/workflows/create_badges.yml/badge.svg)
+![status](https://github.com/FerreTux/PyEmblem/actions/workflows/create_badges.yml/badge.svg)
 
 ## Descriptions
 Create dynamic badges using string payloads of various types. 

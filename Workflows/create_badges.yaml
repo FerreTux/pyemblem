@@ -1,0 +1,26 @@
+# Reads a json file of statuses for badges
+
+name: get_goal_status
+
+# Controls when the action will run.
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+jobs:
+ job3:
+  runs-on: ubuntu-latest
+  steps:
+  - uses: actions/checkout@v2
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  - id: pyemblem
+    uses: FerreTux/pyemblem@Dev
+    with:
+      payloads_file: "badges.json"
+      token: "${{ secrets.GIST_SECRET }}"
+      gist_id: "01a25530164706ced2a6f6775340f891"
+      commit_message: "First Commit Attempt"
+  - id: echo_json
+    run: |
+      echo "Badges Created... We Hope? otherwise something is a foot at the circle k"

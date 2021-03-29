@@ -1,0 +1,38 @@
+{
+  "GoalBadge1": {
+    "content": {
+      "label": "Status",
+      "message": "Achieved",
+      "color": "green"
+    }
+  },
+  "GoalBadge2": {
+    "content": {
+      "label": "Status",
+      "message": "Untested",
+      "color": "green"
+    }
+  },
+  "GoalBadge3": {
+    "content": {
+      "label": "Status",
+      "message": "Achieved",
+      "color": "green"
+    }
+  },
+  "GoalBadge4": {
+    "content": {
+      "label": "Status",
+      "message": "Achieved",
+      "color": "green"
+    }
+  },
+  "GistBadge": {
+    "content": {
+      "label": "",
+      "message": "Link to Gist",
+      "color": "yellow"
+      "namedLogo": "GitHub",
+    }
+  }
+}

@@ -31,7 +31,7 @@
   },
   "logoSvg": {
     "required":false,
-    "format_rule": null,
+    "format_rule": "^data:image\\/svg\\+xml;base64,[a-zA-Z0-9\\/\\+]*=\\S*$",
     "description:": "An SVG string containing a custom logo"
   },
   "logoColor": {

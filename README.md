@@ -1,6 +1,7 @@
 # PyEmblem@Dev
 
 **Checks**
+
 ![status](https://github.com/FerreTux/PyEmblem/actions/workflows/create_badges.yml/badge.svg)
 ![status](https://github.com/FerreTux/PyEmblem/actions/workflows/linting.yml/badge.svg)
 
@@ -63,8 +64,7 @@ Currently, only JSON is being leveraged but there are plans to expand to more pa
     - In the URL you should see something like
         - ```https://gist.github.com/FerreTux/761627e5ad10843ebc983328034a8e3f#file-pyemblembadges```
         - Your Gist Id is the long string in the middle: **761627e5ad10843ebc983328034a8e3f**
-        - Save this you will need this for later steps
-  ![image](https://i.imgur.com/0mFh5Kf.png)
+        - Save this you will need this for later steps ![image](https://i.imgur.com/0mFh5Kf.png)
        
 ### Getting/Creating your Github Secret
 1. **Create a new secret**

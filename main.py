@@ -77,7 +77,7 @@ def parse_json(file: TextIOWrapper) -> dict:
     :return:
         parsed json object
     """
-    print(f"Parsing Payload...", end="")
+    print("Parsing Payload...", end="")
     try:
         payloads = json.load(file)
     except FileNotFoundError:
@@ -139,7 +139,6 @@ def validate_payload(pl: dict):
         # Params
           pl = A single Payload objected within the payloads object
     """
-    foobar = ""
     if DEBUG:
         print(f"\nReviewing payload: {pl} {type(pl)} {repr(pl)}")
     if not pl:
@@ -151,7 +150,7 @@ def validate_payload(pl: dict):
         try:
             for field in valid_dict:
                 if valid_dict[field]["required"]:
-                    foobar = payload[field]
+                    print(f"Required field from schema: {payload[field]}")
         except ValueError:
             print_err(Severity.fatal,
                       "Failed to find 'required' from the valid dictionary")

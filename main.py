@@ -1,13 +1,18 @@
+#stdlib
 from io import TextIOWrapper
-
-import requests
 import json
-import sys
 import os
+import sys
+
 import platform
 import traceback as tb
-from enum import Enum
 import re
+from enum import Enum
+
+
+#3p
+import requests
+
 
 # ansi color definitions
 ansi_yellow = "\u001b[33m"
@@ -117,7 +122,8 @@ def validate_payloads(json_file: str) -> dict:
         for payload in badge_dict:
             validate_payload(badge_dict[payload])
             # Turn to string and pattern sub
-            badge_dict[payload]["content"] = json.dumps(badge_dict[payload]["content"])
+            badge_dict[payload]["content"] \
+                = json.dumps(badge_dict[payload]["content"])
         # add the rest of the needs for checking the keys
     except KeyError:
         print_err(Severity.fatal, f"Failed to validate payloads see TB")
@@ -217,7 +223,7 @@ def send_payloads(payload: dict) -> ...:
     except RuntimeError:
         print_err(Severity.fatal, f"Remote rejected request {r.status_code}")
         print_exit(es="\n401: Please ensure you have a gist scope secret"
-                      "\n401: Double check you have copied the secret correctly"
+                      "\n401: Double check you copied the secret correctly"
                       "\n422: Malformed request semantically erroneous")
     except NotImplementedError:
         print_err(Severity.fatal, "Its Foobar")
@@ -267,7 +273,8 @@ except IndexError:
 
 
 try:
-    schema_file_path = "/home/runner/work/_actions/FerreTux/pyemblem/Dev/valid_keys.json"
+    schema_file_path \
+        = "/home/runner/work/_actions/FerreTux/pyemblem/Dev/valid_keys.json"
     if DEBUG:
         print(schema_file_path)
     with open(schema_file_path) as valid_keys_file:

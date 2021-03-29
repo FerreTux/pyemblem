@@ -12,6 +12,7 @@
       "label": "Status",
       "message": "Untested",
       "color": "yellow",
+      "isError": true,
       "style": "for-the-badge"
     }
   },

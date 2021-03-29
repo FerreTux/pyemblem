@@ -1,11 +1,29 @@
-# PyEmblem 
+# PyEmblem@Dev
 
 #### Checks:
 ![status](https://github.com/FerreTux/PyEmblem/actions/workflows/create_badges.yml/badge.svg)
 
 ## Descriptions
-Create dynamic badges using string payloads of various types. 
+Create dynamic badges using json file payloads. 
 Currently, only JSON is being leveraged but there are plans to expand to more payload types in the future.
+
+### This is currently in testing for all Shields.io fields. 
+**Working**
+- label
+- message
+- color
+- namedLogo
+- style
+
+
+**Untested**
+- labelColor
+- isError
+- logoSvg
+- logoColor
+- logoWidth
+- logoPosition
+- cacheSeconds
 
 ### Usage Potential
 - Need to create multiple badges all at once from a single github workflow job

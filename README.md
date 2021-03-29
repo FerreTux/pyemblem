@@ -1,5 +1,5 @@
 # PyEmblem 
-![](https://github.com/FerreTux/PyEmblem/actions/workflows/create_badges.yaml/badge.svg)
+Badge Creation: ![](https://github.com/FerreTux/PyEmblem/actions/workflows/create_badges.yaml/badge.svg)
 
 ## Descriptions
 Create dynamic badges using string payloads of various types. 
@@ -88,12 +88,17 @@ jobs:
 
 ### Extracting and using your badges
 - Linked Badge
-```
+```md
 [![Badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/<UserName>/<GistID>/raw/<BadgeName>)](httpe://place.tolink.to)
 ```
 - Unlinked Badge
-```
+```md
 ![Badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/<UserName>/<GistID>/raw/<BadgeName>)
+```
+
+- Recommend adding this to your readme somewhere as well
+```md
+Badge Creation: ![](https://github.com/FerreTux/PyEmblem/actions/workflows/your_workflow.yaml/badge.svg)
 ```
 
 

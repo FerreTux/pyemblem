@@ -118,7 +118,7 @@ def validate_payloads(json_file: str) -> dict:
         for payload in badge_dict:
             validate_payload(badge_dict[payload])
             # Turn to string and pattern sub
-            badge_dict[payload]["content"] = json.dumps({badge_dict[payload]["content"]})
+            badge_dict[payload]["content"] = json.dumps(badge_dict[payload]["content"])
         # add the rest of the needs for checking the keys
     except KeyError:
         print_err(Severity.fatal, f"Failed to validate payloads see TB")

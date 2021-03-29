@@ -218,8 +218,8 @@ def send_payloads(payload: dict) -> ...:
 print(sys.argv)
 # Output color correction for windows during testing
 if platform.system() == "Windows":
-    test = os.system("color 0")
-
+    foo = os.system("color 0")
+    WINDOWS = True
 
 """
 inputs:
@@ -250,7 +250,8 @@ except IndexError:
     print_exit(es="\n1. Poorly escaped characters in terminal execution?")
 
 try:
-    with open("valid_keys.json") as valid_keys_file:
+    lint_file = os.path.join("valid_keys.json")
+    with open(lint_file) as valid_keys_file:
         valid_dict = parse_json(valid_keys_file)
 except RuntimeError:
     print_err(Severity.fatal, "Failed to load valid dictionary file")

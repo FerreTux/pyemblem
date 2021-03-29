@@ -1,7 +1,9 @@
 # PyEmblem@Dev
+[![badbge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/FerreTux/761627e5ad10843ebc983328034a8e3f/raw/ferretuxLogo)]() 
 
 #### Checks:
 ![status](https://github.com/FerreTux/PyEmblem/actions/workflows/create_badges.yml/badge.svg)
+
 
 ## Descriptions
 Create dynamic badges using json file payloads. 

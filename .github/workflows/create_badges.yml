@@ -6,7 +6,7 @@ name: get_goal_status
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
+    branches: [ Master, master ]
 jobs:
  job3:
   runs-on: ubuntu-latest

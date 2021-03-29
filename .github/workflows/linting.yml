@@ -45,6 +45,12 @@ jobs:
       - name: Lint Code Base
         uses: github/super-linter@v3
         env:
-          VALIDATE_ALL_CODEBASE: True
+          VALIDATE_PYTHON_PYLINT: True
+          VALIDATE_PYTHON_FLAKE8: True
+          VALIDATE_PYTHON_ISORT: True
+          VALIDATE_PYTHON_MYPY: True
+          VALIDATE_MARKDOWN: True
+          VALIDATE_JSON: True
+          VALIDATE_YAML: True
           DEFAULT_BRANCH: Master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -28,6 +28,7 @@ class Severity(Enum):
     """
     Enum class to define console severitys for print functions
     """
+
     fatal = 1
     warning = 2
 

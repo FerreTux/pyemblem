@@ -16,9 +16,10 @@ Currently, only JSON is being leveraged but there are plans to expand to more pa
 - style
 - logoColor
 - labelColor
+- isError
 
 **Untested**
-- isError
+
 - logoSvg
 - logoWidth
 - logoPosition

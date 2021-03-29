@@ -24,6 +24,5 @@ runs:
       run: |
         python -m pip install requests
         echo "${{ github.action_path }}"
-        token=${{ inputs.token }}
-        python ${{ github.action_path }}/main.py ${{ inputs.payloads_file }} $token ${{ inputs.gist_id }} ${{ inputs.commit_message }}
+        python ${{ github.action_path }}/main.py ${{ inputs.payloads_file }} ${{ inputs.token }} ${{ inputs.gist_id }} ${{ inputs.commit_message }}
       shell: bash

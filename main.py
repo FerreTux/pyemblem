@@ -185,7 +185,6 @@ def send_payloads(payload: dict) -> ...:
             print(f"The payload to gist is: \n {payload}")
         headers = {
             'Content-Type': 'application/json',
-            'Content-Length': len(payload),
             'User-Agent': 'PyEmblem',
             "Authorization": "token " + token
         }

@@ -1,10 +1,10 @@
 # stdlib
 import json
-from io import TextIOWrapper
 import os
+from io import TextIOWrapper
 import platform
-import sys
 import re
+import sys
 import traceback as tb
 from enum import Enum
 

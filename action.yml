@@ -21,7 +21,7 @@ runs:
     - id: runs
       run: |
         python -m pip install requests
-        echo "${{ inputs.control_payload }}"
+        echo ${{ inputs.control_payload }}[1]
         echo ${{ inputs.control_payload }}
         python ${{ github.action_path }}/main.py "${{ inputs.control_payload }}" ${{ inputs.payload_type }}
       shell: bash

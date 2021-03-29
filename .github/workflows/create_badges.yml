@@ -19,7 +19,7 @@ jobs:
     with:
       payloads_file: "badges.json"
       token: "${{ secrets.GIST_SECRET }}"
-      gist_id: "01a25530164706ced2a6f6775340f891"
+      gist_id: "761627e5ad10843ebc983328034a8e3f"
       commit_message: "First Commit Attempt"
   - id: echo_json
     run: |

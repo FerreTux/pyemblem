@@ -183,7 +183,12 @@ def send_payloads(payload: dict) -> ...:
         payload["public"] = True
         if DEBUG:
             print(f"The payload to gist is: \n {payload}")
-        headers = {'Authorization': f'token {token}'}
+        headers = {
+            'Content-Type': 'application/json',
+            'Content-Length': len(payload),
+            'User-Agent': 'PyEmblem',
+            "Authorization": "token " + token
+        }
         r = requests.post('https://api.github.com/gists/'
                           + gist_id, data=json.dumps(payload),
                           headers=headers, params=params)

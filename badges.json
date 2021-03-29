@@ -35,8 +35,17 @@
     "content": {
       "label": "",
       "message": "Link to Gist",
-      "color": "yellow",
+      "color": "181717",
       "namedLogo": "GitHub",
+      "style": "for-the-badge"
+    }
+  },
+  "ShieldsBadge": {
+    "content": {
+      "label": "",
+      "message": "Link to Gist",
+      "color": "000000",
+      "namedLogo": "Shields.io",
       "style": "for-the-badge"
     }
   }

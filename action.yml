@@ -21,7 +21,5 @@ runs:
     - id: runs
       run: |
         python -m pip install requests
-        control_payload=${{ github.event.inputs.control_payload }}
-        payload_type=${{ github.event.inputs.payload_type }}
-        python ${{ github.action_path }}/main.py $control_payload $payload_type
+        python ${{ github.action_path }}/main.py ${{ github.event.inputs.payload_type }} ${{ github.event.inputs.control_payload }}
       shell: bash

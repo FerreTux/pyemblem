@@ -145,11 +145,6 @@ Badge Creation: ![Badge](https://github.com/FerreTux/PyEmblem/actions/workflows/
 - Create multiple shields.io dynamic badges with a single payload request
 - Composite this workflow with other workflows to create all of your badge needs
 
-### Expected Subsystems
-- **Main**
-  - Validating payload structure
-  - Posting to Gist
-
 ## Future Goals/ideas
 - Support more stringable file types
   - xml

@@ -34,6 +34,11 @@
     "format_rule": "^data:image\\/svg+xml;base64,[a-zA-Z0-9\\/\\+]{1,8192}(=|+)\\S*$",
     "description:": "A png string base64 containing a custom logo Must be less than 8000 bytes"
   },
+  "logo": {
+    "required":false,
+    "format_rule": "^data:image\\/svg+xml;base64,[a-zA-Z0-9\\/\\+]{1,8192}(=|+)\\S*$",
+    "description:": "A png string base64 containing a custom logo Must be less than 8000 bytes"
+  },
   "logoColor": {
     "required":false,
     "format_rule": "^(brightgreen|green|yellowgreen|yellow|orange|red|blue|lightgrey|success|important|critical|informational|inactive|blueviolet|([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))\\S*$",

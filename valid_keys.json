@@ -31,7 +31,7 @@
   },
   "logoSvg": {
     "required":false,
-    "format_rule": "^data:image\\/svg+xml;base64,[a-zA-Z0-9\\/\\+]{1,8192}(=|+)\\S*$",
+    "format_rule": "^data:image\\/svg+xml;base64,[a-zA-Z0-9\\/\\+]{1,8192}(=|\\+)\\S*$",
     "description:": "A png string base64 containing a custom logo Must be less than 8000 bytes"
   },
   "logoColor": {

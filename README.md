@@ -24,7 +24,7 @@ Currently, only JSON is being leveraged but there are plans to expand to more pa
 
 **Untested**
 
-- logoSvg
+- logoSvg : **Totally Broken**
 - logoWidth
 - logoPosition
 - cacheSeconds

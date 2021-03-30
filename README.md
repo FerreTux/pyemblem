@@ -1,4 +1,5 @@
 # PyEmblem@Dev
+![ferretuxLogo](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/FerreTux/761627e5ad10843ebc983328034a8e3f/raw/ferretuxLogo)
 
 **Checks**
 

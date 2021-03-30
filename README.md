@@ -158,4 +158,4 @@ Badge Creation: ![Badge](https://github.com/FerreTux/PyEmblem/actions/workflows/
 - Toggleable composite output such that you can also use the workflow to output proper shields.io JSON to your workflow
 - Sends Email notification of results or errors
 
-# ![Logo](https://gist.githubusercontent.com/FerreTux/274811b33b707c6f2161950de55928c6/raw/7076a6ce806ea42fd5702fe98a001a5d5a5b5728/ferretux_logo.svg) 2021
+![Logo](https://gist.githubusercontent.com/FerreTux/274811b33b707c6f2161950de55928c6/raw/7076a6ce806ea42fd5702fe98a001a5d5a5b5728/ferretux_logo.svg) 2021
